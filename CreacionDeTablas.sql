@@ -39,6 +39,14 @@ CREATE TABLE detalles_pedidos (
 	FOREIGN KEY (id_producto) REFERENCES productos (id)
 );
 
+CREATE TABLE RE_PRODUCTOS_CATEGORIAS (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT,
+    id_categoria int,
+	FOREIGN KEY (id_producto) REFERENCES productos (id),
+    FOREIGN KEY (id_categoria) REFERENCES categorias (id)
+);
+
 alter table pedidos add id_detalles_pedidos INT;
 alter table pedidos add FOREIGN KEY (id_detalles_pedidos) REFERENCES detalles_pedidos (id);
 
