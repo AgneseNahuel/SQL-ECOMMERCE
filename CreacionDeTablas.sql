@@ -11,7 +11,9 @@ CREATE TABLE pedidos (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	fecha DATE,
 	id_usuario INT,
-	FOREIGN KEY (id_usuario) REFERENCES usuarios (id)
+	FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
+    id_detalles_pedidos int,
+    foreign key (id_detalles_pedidos) references detalles_pedidos (id)
 );
 
 CREATE TABLE productos (
@@ -19,8 +21,7 @@ CREATE TABLE productos (
 	nombre VARCHAR(30),
 	descripcion VARCHAR(30),
 	precio FLOAT,
-	id_pedido INT,
-	FOREIGN KEY (id_pedido) REFERENCES pedidos (id)
+	id_pedido INT
 );
 
 CREATE TABLE categorias (
@@ -28,13 +29,12 @@ CREATE TABLE categorias (
 	nombre VARCHAR(30),
 	descripcion VARCHAR(50),
     id_producto INT,
-    #agregada
     FOREIGN KEY (id_producto) REFERENCES productos (id)
 );
 
 CREATE TABLE detalles_pedidos (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	cantidad FLOAT,
+	cantidad int,
 	id_producto INT,
 	FOREIGN KEY (id_producto) REFERENCES productos (id)
 );
@@ -47,15 +47,8 @@ CREATE TABLE RE_PRODUCTOS_CATEGORIAS (
     FOREIGN KEY (id_categoria) REFERENCES categorias (id)
 );
 
-CREATE TABLE RE_PRODUCTOS_CATEGORIAS (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT,
-    id_categoria int,
-	FOREIGN KEY (id_producto) REFERENCES productos (id),
-    FOREIGN KEY (id_categoria) REFERENCES categorias (id)
-);
 
-alter table pedidos add id_detalles_pedidos INT;
-alter table pedidos add FOREIGN KEY (id_detalles_pedidos) REFERENCES detalles_pedidos (id);
 
-ALTER TABLE detalles_pedidos MODIFY cantidad INT;
+
+
+drop SCHEMA ecommerce;
