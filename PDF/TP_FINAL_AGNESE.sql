@@ -262,18 +262,20 @@ $$
 #----------------------------------------------------------------------------------------------------------------------------
 #											CREACION DE USUARIOS Y PERMISOS!
 
-#Usuario Carolina
-create user "Carolina"@"localhost" IDENTIFIED by "contraseñaCarolina";
 
-grant select, update on ecommerce.productos to "Carolina"@"localhost";
-grant select (pais, provincia), update (pais, provincia) on ecommerce.usuarios to "Carolina"@"localhost";
-grant select on ecommerce.pedidos to "Carolina"@"localhost";
-grant select, update, insert on ecommerce.categorias to "Carolina"@"localhost";
+# Usuario Carolina
+CREATE USER 'Carolina'@'localhost' IDENTIFIED BY 'contraseñaCarolina';
 
-#Usuario Nacho (solo lectura)
-create user Nacho@localhost identified by "contraseñaNacho";
+GRANT SELECT, UPDATE ON ecommerce.productos TO 'Carolina'@'localhost';
+GRANT SELECT (pais, provincia), UPDATE (pais, provincia) ON ecommerce.usuarios TO 'Carolina'@'localhost';
+GRANT SELECT ON ecommerce.pedidos TO 'Carolina'@'localhost';
+GRANT SELECT, UPDATE, INSERT ON ecommerce.categorias TO 'Carolina'@'localhost';
 
-grant select on *.* to Nacho@localhost;
+# Usuario Nacho (solo lectura)
+CREATE USER 'Nacho'@'localhost' IDENTIFIED BY 'contraseñaNacho';
+
+GRANT SELECT ON *.* TO 'Nacho'@'localhost';
+
 
 #-----------------------------------------------------------------------------------------------------------------------------
 #											TCL
